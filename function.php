@@ -19,7 +19,7 @@ function get_bro(){
          $exp[1] = $opera[1];    
      } elseif(stripos($sys, "Edg") > 0) {  
          //Chromium Edge的User Agent标记是"Edg"
-         preg_match("/Edge\/([\d\.]+)/", $sys, $Edge);  
+         preg_match("/Edg\/([\d\.]+)/", $sys, $Edge);  
          $exp[0] = "Edge";  
          $exp[1] = $Edge[1];  
      } elseif(stripos($sys, "Edge") > 0) {  
@@ -122,7 +122,7 @@ $agent = $_SERVER['HTTP_USER_AGENT'];
       $os = 'Macintosh';  
     } 
     else if (preg_match('/Mac/i', $agent)) {
-      $os = 'Mac OS';
+      $os = 'MacOS';
     } 
     else if (preg_match('/PowerPC/i', $agent))  
     {  
