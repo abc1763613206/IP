@@ -17,7 +17,13 @@ $get=$_GET["s"];
 $get=base64_decode(str_replace(" ","+",$get));
 //$wangzhi=$_SERVER['HTTP_REFERER'];这里获取当前网址
 //here is ip 
+
+// taobao api
 $url="http://ip.taobao.com/service/getIpInfo.php?ip=".$ip; 
+
+// ip-api
+// $url="http://ip-api.com/json/".$ip."?lang=zh-CN";
+
 $UserAgent = 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 3.0.04506; .NET CLR 3.5.21022; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';  
 $curl = curl_init(); 
 curl_setopt($curl, CURLOPT_URL, $url); 
@@ -30,9 +36,16 @@ curl_setopt($curl, CURLOPT_USERAGENT, $UserAgent);
 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);  
 $data = curl_exec($curl);
 $data = json_decode($data, true);
+// taobao api
 $country = $data['data']['country']; 
 $region = $data['data']['region']; 
 $city = $data['data']['city'];
+
+// ip-api
+// $country = $data['country'];
+// $region = $data['regionName'];
+// $city = $data['city'];
+
 //定义颜色
 $black = ImageColorAllocate($im, 0,0,0);//定义黑色的值
 $red = ImageColorAllocate($im, 255,0,0);//红色
