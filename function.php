@@ -26,15 +26,19 @@ function get_bro(){
              preg_match("/Chrome\/([\d\.]+)/", $sys, $google);  
          $exp[0] = "Chrome";  
          $exp[1] = $google[1];  //获取google chrome的版本号  
+     } elseif (stripos($sys, "Safari") > 0) {
+         preg_match("/Safari\/([\d\.]+)/", $sys, $safari);
+         $exp[0] = "Safari";
+         $exp[1] = $safari[1];  //获取Safari的版本号 
      } elseif(stripos($sys,'rv:')>0 && stripos($sys,'Gecko')>0){  
          preg_match("/rv:([\d\.]+)/", $sys, $IE);  
              $exp[0] = "IE";  
          $exp[1] = $IE[1];  
      }else {  
-        $exp[0] = "未知浏览器";  
-        $exp[1] = "";   
+        $exp[0] = "未知";  
+        // $exp[1] = "";   
      }  
-     return $exp[0].'('.$exp[1].')';  
+     return $exp[0];  
 }  
 $bro = get_bro();
 //操作系统
@@ -112,7 +116,10 @@ $agent = $_SERVER['HTTP_USER_AGENT'];
     else if (preg_match('/Mac/i', $agent) && preg_match('/PC/i', $agent))  
     {  
       $os = 'Macintosh';  
-    }  
+    } 
+    else if (preg_match('/Mac/i', $agent)) {
+      $os = 'Mac OS';
+    } 
     else if (preg_match('/PowerPC/i', $agent))  
     {  
       $os = 'PowerPC';  
@@ -163,7 +170,7 @@ $agent = $_SERVER['HTTP_USER_AGENT'];
     }  
     else  
     {  
-      $os = '未知操作系统';  
+      $os = '未知';  
     }  
     return $os;    
 }  
