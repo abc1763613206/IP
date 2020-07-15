@@ -17,8 +17,12 @@ function get_bro(){
              preg_match("/OPR\/([\d\.]+)/", $sys, $opera);  
          $exp[0] = "Opera";  
          $exp[1] = $opera[1];    
+     } elseif(stripos($sys, "Edg") > 0) {  
+         //Chromium Edge的User Agent标记是"Edg"
+         preg_match("/Edge\/([\d\.]+)/", $sys, $Edge);  
+         $exp[0] = "Edge";  
+         $exp[1] = $Edge[1];  
      } elseif(stripos($sys, "Edge") > 0) {  
-         //win10 Edge浏览器 添加了chrome内核标记 在判断Chrome之前匹配  
          preg_match("/Edge\/([\d\.]+)/", $sys, $Edge);  
          $exp[0] = "Edge";  
          $exp[1] = $Edge[1];  
@@ -36,9 +40,9 @@ function get_bro(){
          $exp[1] = $IE[1];  
      }else {  
         $exp[0] = "未知";  
-        // $exp[1] = "";   
+        $exp[1] = "";   
      }  
-     return $exp[0];  
+     return $exp[0].'('.$exp[1].')';  
 }  
 $bro = get_bro();
 //操作系统
