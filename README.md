@@ -14,6 +14,11 @@ mail：邮箱
 str：最下方留言（strsize：大小）
 ```
 PSD源文件也已上传，如需其他请自己更改（别忘了改坐标）。
+
+使用前需在服务器端安装msyh.ttf字体。
+
+因为淘宝的api访问量很大，经常挂掉，所以在index.php里加入了ip-api的api，需要切换请将淘宝api的部分注释掉，将ip-api部分的注释去掉。
+
 ## 最后
 
 调教愉快！
@@ -33,3 +38,4 @@ $url="http://ip.taobao.com/service/getIpInfo.php?ip=".$ip; <br>
 $country = $data['data']['country']; <br>
 $region = $data['data']['region']; <br>
 $city = $data['data']['city'];<br>
+
